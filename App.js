@@ -5,7 +5,9 @@ import {
 import {
   AppLoading, Asset, Font, Icon,
 } from 'expo'
+import { Provider } from 'react-redux'
 import AppNavigator from './src/navigation/AppNavigator'
+import store from './src/redux/store'
 
 const styles = StyleSheet.create({
   container: {
@@ -57,10 +59,12 @@ export default class App extends React.Component {
       )
     }
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <AppNavigator />
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          <AppNavigator />
+        </View>
+      </Provider>
     )
   }
 }
