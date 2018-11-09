@@ -1,10 +1,20 @@
 /* eslint-disable no-undef */
 import React from 'react'
 import {
-  Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View,
+  Image,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Button,
 } from 'react-native'
 import { WebBrowser } from 'expo'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { MonoText } from '../components/StyledText'
+import * as counterActions from '../redux/actions/counterActions'
 
 const styles = StyleSheet.create({
   container: {
@@ -95,7 +105,7 @@ const styles = StyleSheet.create({
   },
 })
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   }
@@ -110,7 +120,7 @@ export default class HomeScreen extends React.Component {
     )
   }
 
-  maybeRenderDevelopmentModeWarning() {
+  maybeRenderDevelopmentModeWarning = () => {
     if (__DEV__) {
       const learnMoreButton = (
         <Text onPress={this.handleLearnMorePress} style={styles.helpLinkText}>
@@ -134,6 +144,15 @@ export default class HomeScreen extends React.Component {
     )
   }
 
+  /* Redux */
+  handleIncrease = () => {
+    this.props.counterActions.counterIncrease()
+  }
+
+  handleDecrease = () => {
+    this.props.counterActions.counterDecrease()
+  }
+
   /* eslint-disable global-require */
   render() {
     return (
@@ -152,7 +171,10 @@ export default class HomeScreen extends React.Component {
 
           <View style={styles.getStartedContainer}>
             {this.maybeRenderDevelopmentModeWarning()}
-
+            <Text style={styles.getStartedText}>
+              {`userToken: ${this.props.user
+              && this.props.user.userToken}`}
+            </Text>
             <Text style={styles.getStartedText}>Get started by opening</Text>
 
             <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
@@ -172,13 +194,35 @@ export default class HomeScreen extends React.Component {
         </ScrollView>
 
         <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
+          <View>
+            <Text style={styles.text}>{this.props.counter}</Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <Button title="Decrease" bgColor="orange" onPress={this.handleDecrease} />
+            <Button title="Increase" bgColor="#397af8" onPress={this.handleIncrease} />
           </View>
         </View>
       </View>
     )
   }
 }
+
+/* props_name: state.reducer_name */
+const mapStateToProps = state => ({
+  counter: state.counter,
+  user: state.user,
+})
+
+/*
+  props_action_name: bindActionCreators(actions, dispatch)
+  import * as actions from 'path_to_actions'
+*/
+const mapDispatchToProps = dispatch => ({
+  counterActions: bindActionCreators(counterActions, dispatch),
+})
+
+connect()
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomeScreen)
