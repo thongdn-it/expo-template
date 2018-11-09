@@ -1,4 +1,22 @@
-# Expo Template Project
+# Expo Template
+
+Expo project with Babel, ESLint, Flow, Prettier, Admob, Redux.
+
+## Usage
+
+- Manual: clone project
+
+```
+git clone -b base https://github.com/thongdn-it/expo-template.git
+```
+
+- Automatic: use [expo-template-cli](https://www.npmjs.com/package/expo-template-cli)
+
+```
+npm i -g expo-template-cli
+cd path
+ext create project-name
+```
 
 ## Branches
 
