@@ -1,5 +1,5 @@
 {
-  "name": "my-new-project",
+  "name": "expo-template",
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
@@ -7,7 +7,11 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "test": "node_modules/.bin/jest --watchAll"
+    "test": "node ./node_modules/jest/bin/jest.js --watchAll",
+    "flow-start": "flow start",
+    "flow-stop": "flow stop",
+    "flow-status": "flow status",
+    "flow-coverage": "flow coverage"
   },
   "jest": {
     "preset": "jest-expo"
@@ -20,7 +24,15 @@
     "react-navigation": "^2.18.2"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0",
-    "jest-expo": "^31.0.0"
+    "@babel/preset-flow": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "flow-bin": "^0.85.0",
+    "jest-expo": "^31.0.0",
+    "prettier-eslint": "^8.8.2"
   }
 }

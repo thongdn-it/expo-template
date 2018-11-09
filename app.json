@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "expo-template",
-    "description": "A very interesting project.",
+    "name": "Expo Template Project",
+    "description": "Expo template project\nCreate by Thong Dang.",
     "slug": "expo-template",
     "privacy": "public",
     "sdkVersion": "31.0.0",
@@ -15,13 +15,17 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 60000
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "thongdn.ios.expo-template",
+      "buildNumber": "1"
+    },
+    "android": {
+      "package": "thongdn.android.expo_template",
+      "versionCode": 1
     }
   }
 }
