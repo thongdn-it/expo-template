@@ -221,7 +221,6 @@ const mapDispatchToProps = dispatch => ({
   counterActions: bindActionCreators(counterActions, dispatch),
 })
 
-connect()
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
