@@ -47,7 +47,6 @@ const mapDispatchToProps = dispatch => ({
   userActions: bindActionCreators(userActions, dispatch),
 })
 
-connect()
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
