@@ -17,7 +17,7 @@ export default class MainScreen extends React.Component {
           adUnitID={BANNER_ID}
           testDeviceID="EMULATOR"
           onDidFailToReceiveAdWithError={(error) => {
-            console.error(error)
+            console.log(error)
           }}
         />
       </View>
