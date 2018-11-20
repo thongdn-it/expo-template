@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  ActivityIndicator, AsyncStorage, StatusBar, StyleSheet, View,
+  ActivityIndicator, StatusBar, StyleSheet, View,
 } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -17,16 +17,15 @@ const styles = StyleSheet.create({
 class AuthLoadingScreen extends React.Component {
   constructor(props) {
     super(props)
-    this.bootstrapAsync()
+    this.props.userActions.getUser()
   }
 
-  // Fetch the token from storage then navigate to our appropriate place
-  bootstrapAsync = async () => {
-    const userToken = await AsyncStorage.getItem('userToken')
-    this.props.userActions.setCurrentUser({ userToken: 'abc' })
-    // This will switch to the App screen or Auth screen and this loading
-    // screen will be unmounted and thrown away.
-    this.props.navigation.navigate(userToken ? 'Main' : 'Auth')
+  componentWillReceiveProps = (nextProps) => {
+    if (nextProps.user) {
+      this.props.navigation.navigate('Main')
+    } else {
+      this.props.navigation.navigate('Auth')
+    }
   }
 
   // Render any loading content that you like here
