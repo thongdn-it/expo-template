@@ -6,8 +6,9 @@ import {
   AppLoading, Asset, Font, Icon,
 } from 'expo'
 import { Provider } from 'react-redux'
-import AppNavigator from './src/navigation/AppNavigator'
+
 import store from './src/redux/store'
+import AppNavigator from './src/navigation/AppNavigator'
 
 const styles = StyleSheet.create({
   container: {
