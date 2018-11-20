@@ -5,11 +5,12 @@ import { AsyncStorage } from 'react-native'
 
 import * as actionTypes from '../actions/constants'
 
-const getUserId = async () => {
-  const userId = await AsyncStorage.getItem('userToken')
-  return userId
+const getUser = async () => {
+  const userToken = await AsyncStorage.getItem('userToken')
+  const user = { userToken }
+  return user
 }
-const fakeApi = () => defer(getUserId)
+const fakeApi = () => defer(getUser)
 
 export default action$ => action$.pipe(
   ofType(actionTypes.GET_USER),
